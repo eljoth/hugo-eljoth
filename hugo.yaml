@@ -32,6 +32,13 @@ params:
       center: true
       #pre: eljoth.de
 
+build:
+  writeStats: true
+
+markup:
+  highlight:
+    noClasses: false
+
 module:
   hugoVersion:
     extended: false

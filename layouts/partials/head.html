@@ -1,0 +1,17 @@
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{ .Title }}</title>
+
+<!-- Main CSS -->
+{{ $mainStyle := resources.Get "css/main.css" | css.PostCSS }}
+<link rel="stylesheet" href="{{ $mainStyle.RelPermalink }}">
+
+<!-- Custom Theme Logic -->
+{{ $theme := .Site.Params.theme }}
+{{ $customThemeFile := printf "css/%s.css" $theme }}
+{{ $customTheme := resources.Get $customThemeFile }}
+
+{{ if $customTheme }}
+    {{ $customStyle := $customTheme  }}
+    <link rel="stylesheet" href="{{ $customStyle.RelPermalink }}" integrity="{{ $customStyle.Data.Integrity }}">
+{{ end }}

@@ -1,0 +1,17 @@
+<div class="navbar {{.Site.Params.Menu.Main.Color}}">
+    <div class="navbar-start">
+        {{ if .Site.Params.Menu.Main.Pre }}
+            <a class="btn btn-ghost text-xl">{{ .Site.Params.Menu.Main.Pre }}</a>
+        {{ end}}
+    </div>
+    <div class="flex-none navbar-center hidden lg:flex">
+        {{ if eq .Site.Params.Menu.Main.Center true }}
+            {{ partial "menu.html" (dict "menuID" "main" "page" .) }}
+        {{ end }}
+    </div>
+    <div class="navbar-end">
+        {{ if eq .Site.Params.Menu.Main.Center false }}
+            {{ partial "menu.html" (dict "menuID" "main" "page" .) }}
+        {{ end }}
+    </div>
+</div>

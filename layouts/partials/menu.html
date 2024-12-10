@@ -1,0 +1,40 @@
+{{- /*
+Renders a menu for the given menu ID.
+
+@context {page} page The current page.
+@context {string} menuID The menu ID.
+
+@example: {{ partial "menu.html" (dict "menuID" "main" "page" .) }}
+*/}}
+
+{{- $page := .page }}
+{{- $menuID := .menuID }}
+
+{{- with index site.Menus $menuID }}
+    <nav>
+        <ul class="menu menu-horizontal px-1">
+            {{- partial "inline/menu/walk.html" (dict "page" $page "menuEntries" .) }}
+        </ul>
+    </nav>
+{{- end }}
+
+{{- define "partials/inline/menu/walk.html" }}
+    {{- range .menuEntries }}
+        {{ if not .HasChildren }}
+            <li>
+                <a href="{{ .URL }}">{{ .Name }}</a>
+            </li>
+        {{ else }}
+            <li>
+                <details>
+                    <summary>{{ .Name }}</summary>
+                    <ul class="bg-base-100 rounded-t-none p-2">
+                        {{ range .Children }}
+                            <li><a href="{{ .URL }}">{{ .Name }}</a></li>
+                        {{ end }}
+                    </ul>
+                </details>
+            </li>
+        {{ end }}
+    {{- end }}
+{{- end }}

@@ -1,0 +1,38 @@
+baseURL: https://example.org/
+languageCode: en-US
+title: My New Hugo Site
+menu:
+  main:
+    - name: Home
+      pageRef: /
+      weight: 10
+    - name: Posts
+      pageRef: /posts
+      weight: 20
+    - name: Tags
+      pageRef: /tags
+      weight: 30
+    - name: Tags1
+      parent: Tags
+      pageRef: /tags
+      weight: 40
+    - name: Tags2
+      parent: Tags
+      pageRef: /tags
+      weight: 50
+    - name: Tags3
+      parent: Tags
+      pageRef: /tags
+      weight: 60
+
+params:
+  theme: sandman
+  menu:
+    main:
+      center: true
+      #pre: eljoth.de
+
+module:
+  hugoVersion:
+    extended: false
+    min: 0.116.0
